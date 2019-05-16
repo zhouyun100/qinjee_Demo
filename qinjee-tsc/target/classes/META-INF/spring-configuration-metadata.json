@@ -1,0 +1,35 @@
+{
+  "groups": [{
+    "name": "redis",
+    "type": "com.qinjee.tsc.redis.RedisConfig",
+    "sourceType": "com.qinjee.tsc.redis.RedisConfig"
+  }],
+  "properties": [
+    {
+      "name": "redis.database",
+      "type": "java.lang.Integer",
+      "sourceType": "com.qinjee.tsc.redis.RedisConfig"
+    },
+    {
+      "name": "redis.host",
+      "type": "java.lang.String",
+      "sourceType": "com.qinjee.tsc.redis.RedisConfig"
+    },
+    {
+      "name": "redis.password",
+      "type": "java.lang.String",
+      "sourceType": "com.qinjee.tsc.redis.RedisConfig"
+    },
+    {
+      "name": "redis.port",
+      "type": "java.lang.Integer",
+      "sourceType": "com.qinjee.tsc.redis.RedisConfig"
+    },
+    {
+      "name": "redis.timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.qinjee.tsc.redis.RedisConfig"
+    }
+  ],
+  "hints": []
+}

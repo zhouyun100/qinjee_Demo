@@ -1,0 +1,49 @@
+server: 
+  port: 8080
+
+#默认使用配置
+spring: 
+  application: 
+    name: qinjee-tsc
+  profiles:
+    active: dev
+
+
+security: 
+    user: 
+        name: qinjee
+        password: qinjee2019
+        
+#公共配置与profiles选择无关
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+
+--- 
+
+spring: 
+  profiles: dev
+  
+  datasource: 
+    url: jdbc:mysql://localhost:3306/qinjee_ehr?serverTimezone=UTC&useSSL=false&characterEncoding=utf8
+    username: root
+    password: qinjee2019
+    driver-class-name: com.mysql.jdbc.Driver
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    
+  rabbitmq: 
+    host: 127.0.0.1
+    port: 5672
+    username: qinjee
+    password: 123456
+    publisher-confirms: false    #消息发送到交换机确认机制,是否确认回调
+
+#注册中心指向start            
+eureka:
+  instance:
+    instance-id: qinjee-tsc-${server.port}
+    appname: ${spring.application.name}
+  client:
+    service-url: 
+      defaultZone: http://${security.user.name}:${security.user.password}@127.0.0.1:8888/eureka/
+      
