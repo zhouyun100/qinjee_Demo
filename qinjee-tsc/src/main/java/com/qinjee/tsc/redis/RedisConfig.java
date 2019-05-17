@@ -18,7 +18,7 @@ import redis.clients.jedis.JedisPoolConfig;
  * @since 2019年5月15日
  */
 @Component
-@PropertySource("classpath:config/redis.properties")
+@PropertySource("classpath:application.yml")
 @ConfigurationProperties(prefix = "redis")
 public class RedisConfig {
 
