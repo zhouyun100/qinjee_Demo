@@ -106,15 +106,18 @@ public class UserInfoController {
 	 * @update:[变更日期YYYY-MM-DD][更改人姓名][变更描述]
 	 */
 	@RequestMapping("/register")
-	public ResultJsonModel register(UserInfoModel userInfo) {
+	public ResultJsonModel register(String username, String password) {
 		ResultJsonModel resultJson = new ResultJsonModel();
 		try {
+			UserInfoModel userInfo = new UserInfoModel();
+			userInfo.setUsername(username);
+			userInfo.setPassword(password);
 			UserInfoModel userInfoModel = userInfoService.selectByUsernameAndPassword(userInfo);
 			if(null == userInfoModel) {
-				userInfoService.addUserInfo(userInfo);
+				userInfoModel = userInfoService.addUserInfo(userInfo);
 				resultJson.setResultCode(ResponseConsts.RESULT_CODE_SUCCESS);
 				resultJson.setResultStatus(ResponseConsts.RESULT_STATUS_SUCCESS);
-				resultJson.setResult("注册成功");
+				resultJson.setResult(userInfoModel);
 			}else {
 				resultJson.setResultCode(ResponseConsts.RESULT_CODE_FAILD);
 				resultJson.setResultStatus(ResponseConsts.RESULT_STATUS_FAILD);

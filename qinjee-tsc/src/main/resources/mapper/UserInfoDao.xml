@@ -23,4 +23,8 @@
         from tsc_user_info
         where username = '${username}' and password = '${password}'
     </select>
+    
+    <insert id="addUserInfo" useGeneratedKeys="true" keyProperty="id" parameterType="com.qinjee.tsc.model.UserInfoModel">
+    	insert into tsc_user_info (username,password) values ('${username}','${password}')
+    </insert>
 </mapper>

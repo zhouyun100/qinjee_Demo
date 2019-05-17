@@ -51,6 +51,6 @@ public interface UserInfoDao {
 	 *
 	 * @update:[变更日期YYYY-MM-DD][更改人姓名][变更描述]
 	 */
-	public UserInfoModel addUserInfo(UserInfoModel userInfo);
+	public void addUserInfo(UserInfoModel userInfo);
 	
 }

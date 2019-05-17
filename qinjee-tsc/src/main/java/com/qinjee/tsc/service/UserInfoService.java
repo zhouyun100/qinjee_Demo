@@ -21,6 +21,7 @@ public class UserInfoService {
 	}
 	
 	public UserInfoModel addUserInfo(UserInfoModel userInfo) {
-		return userInfoDao.addUserInfo(userInfo);
+		userInfoDao.addUserInfo(userInfo);
+		return userInfo;
 	}
 }
