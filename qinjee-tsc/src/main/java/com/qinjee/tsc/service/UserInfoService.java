@@ -16,8 +16,8 @@ public class UserInfoService {
 		return userInfoDao.selectUserInfoById(id);
 	}
 	
-	public UserInfoModel selectByUsernameAndPassword(String username,String password) {
-		return userInfoDao.selectByUsernameAndPassword(username, password);
+	public UserInfoModel selectByUsernameAndPassword(UserInfoModel userInfo) {
+		return userInfoDao.selectByUsernameAndPassword(userInfo);
 	}
 	
 	public UserInfoModel addUserInfo(UserInfoModel userInfo) {

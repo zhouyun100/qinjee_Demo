@@ -36,7 +36,7 @@ public interface UserInfoDao {
 	 *
 	 * @update:[变更日期YYYY-MM-DD][更改人姓名][变更描述]
 	 */
-	public UserInfoModel selectByUsernameAndPassword(String username,String password);
+	public UserInfoModel selectByUsernameAndPassword(UserInfoModel userInfo);
 	
 	/**
 	 * 

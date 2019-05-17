@@ -41,8 +41,7 @@ public class UserInfoController {
 	
 	@Autowired
 	private SendMsgService sendMsgService;
-	
-	
+
 	/**
 	 * 功能描述：设置redis缓存，并返回value
 	 *
@@ -60,16 +59,17 @@ public class UserInfoController {
 	@RequestMapping("/login")
 	public ResultJsonModel login(HttpServletRequest request, String username, String password) {
 		ResultJsonModel resultJson = new ResultJsonModel();
-		UserInfoModel userInfo = null;
 		try {
-			
-			userInfo = userInfoService.selectByUsernameAndPassword(username,password);
+			UserInfoModel userInfo = new UserInfoModel();
+			userInfo.setUsername(username);
+			userInfo.setPassword(password);
+			userInfo = userInfoService.selectByUsernameAndPassword(userInfo);
 			if (userInfo != null) {
-				String loginKey = "LOGIN_" + username;
+				String loginKey = "LOGIN_" + userInfo.getUsername();
 				// 记录登录的session
 				request.getSession().setAttribute(ResponseConsts.SESSION_LOGIN_KEY, loginKey);
 				// 设置redis登录缓存时间，30分钟过期，与前端保持一致
-				redisService.setex(loginKey, ResponseConsts.SESSION_INVALID_SECCOND, username);
+				redisService.setex(loginKey, ResponseConsts.SESSION_INVALID_SECCOND, userInfo.getUsername());
 
 				resultJson.setResultCode(ResponseConsts.RESULT_CODE_SUCCESS);
 				resultJson.setResultStatus(ResponseConsts.RESULT_STATUS_SUCCESS);
@@ -109,7 +109,7 @@ public class UserInfoController {
 	public ResultJsonModel register(UserInfoModel userInfo) {
 		ResultJsonModel resultJson = new ResultJsonModel();
 		try {
-			UserInfoModel userInfoModel = userInfoService.selectByUsernameAndPassword(userInfo.getUsername(),userInfo.getPassword());
+			UserInfoModel userInfoModel = userInfoService.selectByUsernameAndPassword(userInfo);
 			if(null == userInfoModel) {
 				userInfoService.addUserInfo(userInfo);
 				resultJson.setResultCode(ResponseConsts.RESULT_CODE_SUCCESS);

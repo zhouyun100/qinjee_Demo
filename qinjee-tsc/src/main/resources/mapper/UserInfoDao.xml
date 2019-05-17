@@ -21,6 +21,6 @@
         select
         <include refid="Base_Column_List" />
         from tsc_user_info
-        where username = #{username} and password = #{password}
+        where username = '${username}' and password = '${password}'
     </select>
 </mapper>
