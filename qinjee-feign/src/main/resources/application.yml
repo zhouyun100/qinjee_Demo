@@ -1,12 +1,7 @@
 server:
-  port: 8082
+  port: 8088
 
-security: 
-    user: 
-        name: qinjee
-        password: qinjee2019
-
-spring:
+spring: 
   application:
     name: qinjee-feign
     
@@ -16,5 +11,5 @@ eureka:
     appname: ${spring.application.name}
   client:
     service-url:
-      defaultZone: http://${security.user.name}:${security.user.password}@localhost:8888/eureka/
+      defaultZone: http://qinjee:qinjee2019@localhost:8888/eureka/
 #      defaultZone: http://${security.user.name}:${security.user.password}@localhost:8888/eureka/,http://${security.user.name}:${security.user.password}@localhost:8889/eureka/
