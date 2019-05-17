@@ -1,0 +1,36 @@
+spring: 
+  profiles: test
+  
+  datasource: 
+    url: jdbc:mysql://localhost:3306/qinjee_ehr?serverTimezone=UTC&useSSL=false&characterEncoding=utf8
+    username: root
+    password: qinjee2019
+    driver-class-name: com.mysql.jdbc.Driver
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    
+  rabbitmq: 
+    host: 127.0.0.1
+    port: 5672
+    username: qinjee
+    password: 123456
+    publisher-confirms: false    #消息发送到交换机确认机制,是否确认回调
+
+#注册中心指向start
+eureka:
+  instance:
+    instance-id: qinjee-tsc-${server.port}
+    appname: ${spring.application.name}
+  client:
+    service-url: 
+      defaultZone: http://qinjee:qinjee2019@127.0.0.1:8888/eureka/
+
+server: 
+  port: 8080
+  
+redis:
+  host: 127.0.0.1
+  port: 6379
+  password: 123456
+  database: 0
+  timeout: 0
