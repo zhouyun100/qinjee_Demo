@@ -1,11 +1,19 @@
 spring: 
   profiles: dev
     
+  
   datasource: 
-    url: jdbc:mysql://localhost:3306/qinjee_ehr?serverTimezone=UTC&useSSL=false&characterEncoding=utf8
+    # mysql 数据库配置  
+#    url: jdbc:mysql://localhost:3306/qinjee_ehr?serverTimezone=UTC&useSSL=false&characterEncoding=utf8
+#    username: root
+#    password: qinjee2019
+#    driver-class-name: com.mysql.jdbc.Driver
+    
+    # oracle 数据库配置
+    url: jdbc:oracle:thin:@localhost:1521:QINJEEEHR
     username: root
     password: qinjee2019
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: oracle.jdbc.driver.OracleDriver
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     
