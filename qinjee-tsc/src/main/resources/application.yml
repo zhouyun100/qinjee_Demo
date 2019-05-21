@@ -1,9 +1,16 @@
 #默认使用配置
 spring: 
+  #应用名
   application: 
     name: qinjee-tsc
+  #资源文件
   profiles:
     active: dev
+  #配置国际化
+  messages: 
+    basename: i18n/messages
+    encoding: utf-8
+    cache-seconds: 3600
 
 #公共配置与profiles选择无关
 mybatis:
