@@ -23,16 +23,24 @@ spring:
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     
+  #RabbitMQ
   rabbitmq: 
     host: 127.0.0.1
     port: 5672
     username: qinjee
     password: 123456
     publisher-confirms: false    #消息发送到交换机确认机制,是否确认回调
+    
+  #ElasticSearch
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+      cluster-nodes: 127.0.0.1:9300
 
 #注册中心指向start            
-eureka:
-  instance:
+eureka: 
+  instance: 
     instance-id: qinjee-tsc-${server.port}
     appname: ${spring.application.name}
   client:

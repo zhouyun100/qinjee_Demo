@@ -2,6 +2,9 @@ package com.qinjee.tsc.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 //import javax.servlet.http.HttpServletRequest;
 //import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +36,8 @@ import com.qinjee.tsc.service.UserInfoService;
 @RequestMapping("/user")
 public class UserInfoController {
 
+	private static Logger logger = LoggerFactory.getLogger(UserInfoController.class);
+	
 	@Autowired
 	private UserInfoService userInfoService;
 	
@@ -58,6 +63,9 @@ public class UserInfoController {
 	 */
 	@RequestMapping("/login")
 	public ResultJsonModel login(HttpServletRequest request, String username, String password) {
+		
+        logger.info("Login request parameter：username={};password={}", username,password);
+        
 		ResultJsonModel resultJson = new ResultJsonModel();
 		try {
 			UserInfoModel userInfo = new UserInfoModel();
@@ -71,10 +79,14 @@ public class UserInfoController {
 				// 设置redis登录缓存时间，30分钟过期，与前端保持一致
 				redisService.setex(loginKey, ResponseConsts.SESSION_INVALID_SECCOND, userInfo.getUsername());
 
+				logger.info("Login success！username={}", username);
+				
 				resultJson.setResultCode(ResponseConsts.RESULT_CODE_SUCCESS);
 				resultJson.setResultStatus(ResponseConsts.RESULT_STATUS_SUCCESS);
 				resultJson.setResult("登录成功");
 			}else {
+				logger.info("Login faild,No this username found! username={};password={}", username,password);
+				
 				resultJson.setResultCode(ResponseConsts.RESULT_CODE_FAILD);
 				resultJson.setResultStatus(ResponseConsts.RESULT_STATUS_FAILD);
 				resultJson.setResult("登录失败，无该用户信息");
