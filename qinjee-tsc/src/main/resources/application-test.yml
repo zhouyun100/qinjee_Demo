@@ -34,3 +34,6 @@ redis:
   password: 123456
   database: 0
   timeout: 0
+  
+logging: 
+  config: classpath:log4j/log4j2_test.xml
