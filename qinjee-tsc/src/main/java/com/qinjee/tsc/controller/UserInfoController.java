@@ -2,8 +2,8 @@ package com.qinjee.tsc.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 //import javax.servlet.http.HttpServletRequest;
 //import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,7 +36,7 @@ import com.qinjee.tsc.service.UserInfoService;
 @RequestMapping("/user")
 public class UserInfoController {
 
-	private static Logger logger = LoggerFactory.getLogger(UserInfoController.class);
+	private static Logger logger = LogManager.getLogger(UserInfoController.class);
 	
 	@Autowired
 	private UserInfoService userInfoService;

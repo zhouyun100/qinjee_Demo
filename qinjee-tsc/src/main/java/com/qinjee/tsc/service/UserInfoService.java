@@ -1,7 +1,7 @@
 package com.qinjee.tsc.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import com.qinjee.tsc.model.UserInfoModel;
 @Service("userInfoService")
 public class UserInfoService {
 
-	private static Logger logger = LoggerFactory.getLogger(UserInfoService.class);
+	private static Logger logger = LogManager.getLogger(UserInfoService.class);
 	
 	@Autowired
 	private UserInfoDao userInfoDao;

@@ -49,6 +49,9 @@ eureka:
 
 server: 
   port: 8080
+  tomcat:
+    accesslog:
+      enabled: false
 
 redis: 
   host: 127.0.0.1

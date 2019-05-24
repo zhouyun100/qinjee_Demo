@@ -3,34 +3,37 @@
 <!-- status log4j2内部日志级别 -->
 <Configuration status="WARN">
     <properties>
-        <property name="LOG_HOME">D:/qinjee-logs</property>
-        <property name="FILE_NAME">qinjee-tsc</property>
-        <property name="log.sql.level">debug</property>
+        <property name="log_home">D:/qinjee-logs</property>
+        <property name="file_name">qinjee-tsc</property>
+        <property name="pattern_layout">%d{HH:mm:ss.SSS} [%t] %-5level %l - %msg%n</property>
     </properties>
 
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %l - %msg%n" />
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${pattern_layout}" />
         </Console>
 
-        <RollingRandomAccessFile name="RollingRandomAccessFile" fileName="${LOG_HOME}/${FILE_NAME}.log" filePattern="${LOG_HOME}/${date:yyyy-MM-dd}/${FILE_NAME}-%d{yyyy-MM-dd HH:mm}-%i.log">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %l - %msg%n"/>
+        <RollingRandomAccessFile name="rolling_file" fileName="${log_home}/${file_name}.log" filePattern="${log_home}/$${date:yyyy-MM-dd}/${file_name}-%d{yyyy-MM-dd HH-mm}-%i.log">
+            <PatternLayout pattern="${pattern_layout}" />
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1"/>
                 <SizeBasedTriggeringPolicy size="10 MB"/>
             </Policies>
             <DefaultRolloverStrategy max="20"/>
         </RollingRandomAccessFile>
+        
+        <Socket name="socket" host="localhost" port="4567">
+            <JsonLayout compact="true" eventEol="true" />
+            <PatternLayout pattern="${pattern_layout}"/>
+        </Socket>
     </Appenders>
 
     <Loggers>
-        <Root level="info">
-            <AppenderRef ref="Console" />
-            <AppenderRef ref="RollingRandomAccessFile" />
+        <Root level="INFO">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="rolling_file" />
+<!--             <AppenderRef ref="socket" /> -->
         </Root>
-        <Logger name="com.qinjee.tsc.dao" level="${log.sql.level}" additivity="false">
-            <AppenderRef ref="Console" />
-            <AppenderRef ref="RollingRandomAccessFile" />
-        </Logger>
+<!--         <Logger name="com.qinjee.tsc.dao" level="DEBUG" additivity="false" /> -->
     </Loggers>
 </Configuration>

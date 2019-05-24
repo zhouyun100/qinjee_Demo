@@ -18,9 +18,9 @@ import java.util.List;
 import java.util.UUID;
 
 import org.elasticsearch.index.query.QueryBuilders;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -48,7 +48,7 @@ import com.qinjee.tsc.service.ArticleRepository;
 @RequestMapping("/article")
 public class ArticleController {
 
-	private static Logger logger = LoggerFactory.getLogger(ArticleController.class);
+	private static Logger logger = LogManager.getLogger(ArticleController.class);
 	
 	@Autowired
 	private ArticleRepository articleRepository;
