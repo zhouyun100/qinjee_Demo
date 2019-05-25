@@ -12,7 +12,7 @@
  * 原始作者: 周赟
  *
  */
-package com.qinjee.tsc.interceptor;
+package com.qinjee.feign.interceptor;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +24,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.qinejee.consts.ResponseConsts;
-import com.qinjee.tsc.redis.RedisService;
+import com.qinjee.feign.redis.RedisService;
 
 /**
  * session拦截

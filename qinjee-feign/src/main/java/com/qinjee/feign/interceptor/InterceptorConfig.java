@@ -12,7 +12,7 @@
  * 原始作者: 周赟
  *
  */
-package com.qinjee.tsc.interceptor;
+package com.qinjee.feign.interceptor;
 
 import java.util.List;
 
