@@ -23,6 +23,7 @@ import static org.springframework.cloud.netflix.zuul.filters.support.FilterConst
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.PRE_DECORATION_FILTER_ORDER;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.util.concurrent.RateLimiter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.qinejee.consts.ResponseConsts;
@@ -51,6 +52,9 @@ public class AuthFilter extends ZuulFilter{
 	//排除过滤的 uri 地址
     private static final String LOGIN_URI = "/api/qinjee-tsc/user/login";
     private static final String REGISTER_URI = "/api/qinjee-tsc/user/register";
+    
+	// 每秒产生1000个令牌
+	private static final RateLimiter RATE_LIMITER = RateLimiter.create(1000);
 
 	@Override
 	public boolean shouldFilter() {
@@ -69,7 +73,27 @@ public class AuthFilter extends ZuulFilter{
 	@Override
 	public Object run(){
 		RequestContext requestContext = RequestContext.getCurrentContext();
+		
+		//就相当于每调用一次tryAcquire()方法，令牌数量减1，当1000个用完后，那么后面进来的用户无法访问上面接口
+        //当然这里只写类上面一个接口，可以这么写，实际可以在这里要加一层接口判断。
+        if (!RATE_LIMITER.tryAcquire()) {
+            requestContext.setSendZuulResponse(false);
+            //HttpStatus.TOO_MANY_REQUESTS.value()里面有静态代码常量
+            requestContext.setResponseStatusCode(HttpStatus.TOO_MANY_REQUESTS.value());
+            return null;
+        }
+        
         HttpServletRequest request = requestContext.getRequest();
+        
+        //token对象,有可能在请求头传递过来，也有可能是通过参数传过来，实际开发一般都是请求头方式
+//        String token = request.getHeader("token");
+//        if (StringUtils.isEmpty((token))) {
+//            token = request.getParameter("token");
+//        }
+//        if (StringUtils.isEmpty((token))) {
+//        	setUnauthorizedResponse(requestContext);
+//        }
+        
         //先从 cookie 中取 SESSION_KEY
         Cookie sessionKey = getCookie(request, ResponseConsts.SESSION_KEY);
         if (sessionKey == null || StringUtils.isEmpty(sessionKey.getValue())) {
