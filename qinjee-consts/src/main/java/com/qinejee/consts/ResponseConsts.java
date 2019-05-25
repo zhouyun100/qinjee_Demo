@@ -19,6 +19,7 @@ public class ResponseConsts {
 	public static final String SESSION_INVALID_CODE = "10101";
 	public static final String SESSION_INVALID_STATUS = "FAILD";
 	public static final Integer SESSION_INVALID_SECCOND = 1800;
+	public static final String SESSION_INVALID_MES = "INVALID_SESSION";
 	public static final Integer SESSION_CHECK_SECCOND = 300;
 	public static final String SESSION_LOGOUT_CODE = "10102";
 	public static final String SESSION_LOGOUT_STATUS = "SUCCESS";
