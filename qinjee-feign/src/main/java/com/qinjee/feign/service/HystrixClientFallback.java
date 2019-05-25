@@ -16,7 +16,8 @@ package com.qinjee.feign.service;
 
 import org.springframework.stereotype.Component;
 
-import com.qinjee.feign.model.ResultJsonModel;
+import com.qinjee.entity.ResultJsonEntity;
+
 
 /**
  * 
@@ -30,23 +31,13 @@ import com.qinjee.feign.model.ResultJsonModel;
 @Component
 public class HystrixClientFallback extends FallbackResult implements FeignClientService{
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.qinjee.feign.service.FeignClientService#get(java.lang.Integer)
-	*/
 	@Override
-	public ResultJsonModel get(Integer id) {
+	public ResultJsonEntity get(Integer id) {
 		return getNetExceptionResult();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.qinjee.feign.service.FeignClientService#login(java.lang.String, java.lang.String)
-	*/
 	@Override
-	public ResultJsonModel login(String username, String password) {
+	public ResultJsonEntity login(String username, String password) {
 		return getNetExceptionResult();
 	}
 

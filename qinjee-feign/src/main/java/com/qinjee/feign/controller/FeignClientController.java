@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qinejee.consts.ResponseConsts;
-import com.qinjee.feign.model.ResultJsonModel;
+import com.qinjee.entity.ResultJsonEntity;
 import com.qinjee.feign.redis.RedisService;
 import com.qinjee.feign.service.FeignClientService;
 
@@ -48,14 +48,14 @@ public class FeignClientController {
 	private RedisService redisService;
 	
 	@RequestMapping(value="/get", method=RequestMethod.GET)
-	public ResultJsonModel get(Integer id) {
+	public ResultJsonEntity get(Integer id) {
 		return feignService.get(id);
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public ResultJsonModel login(HttpServletRequest request,  HttpServletResponse response, String username, String password) {
+	public ResultJsonEntity login(HttpServletRequest request,  HttpServletResponse response, String username, String password) {
 		
-		ResultJsonModel resultJson = feignService.login(username, password);
+		ResultJsonEntity resultJson = feignService.login(username, password);
 		
 		if(ResponseConsts.RESULT_CODE_SUCCESS.equals(resultJson.getResultCode())) {
 			String loginKey = ResponseConsts.SESSION_KEY + username;
@@ -84,7 +84,7 @@ public class FeignClientController {
 	 * @update:[变更日期YYYY-MM-DD][更改人姓名][变更描述]
 	 */
 	@RequestMapping("/logout")
-	public ResultJsonModel logout(HttpServletRequest request, HttpServletResponse response) {
+	public ResultJsonEntity logout(HttpServletRequest request, HttpServletResponse response) {
 		
 		Cookie cookies[] = request.getCookies();
 		if (cookies != null) {
@@ -104,7 +104,7 @@ public class FeignClientController {
 			}
 		}
 		
-		ResultJsonModel resultJson = new ResultJsonModel();
+		ResultJsonEntity resultJson = new ResultJsonEntity();
 		resultJson.setResultCode(ResponseConsts.SESSION_LOGOUT_CODE);
 		resultJson.setResultStatus(ResponseConsts.SESSION_LOGOUT_STATUS);
 		resultJson.setResult("退出成功");

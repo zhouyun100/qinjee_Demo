@@ -15,7 +15,7 @@
 package com.qinjee.feign.service;
 
 import com.qinejee.consts.ResponseConsts;
-import com.qinjee.feign.model.ResultJsonModel;
+import com.qinjee.entity.ResultJsonEntity;
 
 /**
  * 
@@ -28,8 +28,8 @@ import com.qinjee.feign.model.ResultJsonModel;
  */
 public class FallbackResult {
 
-	protected ResultJsonModel getNetExceptionResult() {
-		ResultJsonModel resultJson = new ResultJsonModel();
+	protected ResultJsonEntity getNetExceptionResult() {
+		ResultJsonEntity resultJson = new ResultJsonEntity();
 		resultJson.setResultCode(ResponseConsts.RESULT_CODE_NET_EXCEPTION);
 		resultJson.setResultStatus(ResponseConsts.RESULT_STATUS_NET_EXCEPTION);
 		resultJson.setResult(ResponseConsts.RESULT_RESULT_NET_MESSAGE);
