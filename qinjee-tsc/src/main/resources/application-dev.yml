@@ -37,6 +37,14 @@ spring:
       repositories:
         enabled: true
       cluster-nodes: 127.0.0.1:9300
+  
+  #Redis
+  redis: 
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    database: 0
+    timeout: 0
 
 #注册中心指向start            
 eureka: 
@@ -53,12 +61,6 @@ server:
     accesslog:
       enabled: false
 
-redis: 
-  host: 127.0.0.1
-  port: 6379
-  password: 123456
-  database: 0
-  timeout: 0
   
 logging:
   config: classpath:log4j/log4j2_dev.xml

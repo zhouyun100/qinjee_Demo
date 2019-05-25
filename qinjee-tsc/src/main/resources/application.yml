@@ -15,3 +15,4 @@ spring:
 #公共配置与profiles选择无关
 mybatis:
   mapperLocations: classpath:mapper/*.xml
+  
