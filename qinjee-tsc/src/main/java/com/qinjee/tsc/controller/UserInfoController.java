@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.qinjee.tsc.rabbitmq.SendMsgService;
 import com.qinejee.consts.ResponseConsts;
-import com.qinjee.tsc.model.ResultJsonModel;
+import com.qinjee.entity.ResultJsonEntity;
 import com.qinjee.tsc.model.UserInfoModel;
 import com.qinjee.tsc.service.UserInfoService;
 
@@ -52,11 +52,11 @@ public class UserInfoController {
 	 * @update:[变更日期YYYY-MM-DD][更改人姓名][变更描述]
 	 */
 	@RequestMapping("/login")
-	public ResultJsonModel login(HttpServletRequest request, String username, String password) {
+	public ResultJsonEntity login(HttpServletRequest request, String username, String password) {
 		
         logger.info("Login request parameter：username={};password={}", username,password);
         
-		ResultJsonModel resultJson = new ResultJsonModel();
+        ResultJsonEntity resultJson = new ResultJsonEntity();
 		try {
 			UserInfoModel userInfo = new UserInfoModel();
 			userInfo.setUsername(username);
@@ -103,8 +103,8 @@ public class UserInfoController {
 	 * @update:[变更日期YYYY-MM-DD][更改人姓名][变更描述]
 	 */
 	@RequestMapping("/register")
-	public ResultJsonModel register(String username, String password) {
-		ResultJsonModel resultJson = new ResultJsonModel();
+	public ResultJsonEntity register(String username, String password) {
+		ResultJsonEntity resultJson = new ResultJsonEntity();
 		try {
 			UserInfoModel userInfo = new UserInfoModel();
 			userInfo.setUsername(username);
@@ -171,8 +171,8 @@ public class UserInfoController {
 	 * @update:[变更日期YYYY-MM-DD][更改人姓名][变更描述]
 	 */
 	@RequestMapping("/get")
-	public ResultJsonModel get(Integer id) {
-		ResultJsonModel resultJson = new ResultJsonModel();
+	public ResultJsonEntity get(Integer id) {
+		ResultJsonEntity resultJson = new ResultJsonEntity();
 		try {
 			UserInfoModel userInfo = userInfoService.selectByPrimaryKey(id);
 			if(null != userInfo) {
