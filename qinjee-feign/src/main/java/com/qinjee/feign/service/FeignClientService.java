@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.qinjee.feign.model.ResultJsonModel;
 
 
-@FeignClient(value = "QINJEE-TSC")
+//@FeignClient(name = "QINJEE-TSC", fallback = HystrixClientFallback.class)
+@FeignClient(name = "QINJEE-TSC", fallbackFactory = HystrixClientFallbackFactory.class)
 public interface FeignClientService{
 
 	@RequestMapping("/user/get")

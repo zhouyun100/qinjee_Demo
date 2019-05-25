@@ -42,4 +42,12 @@ public class ResponseConsts {
 	public static final String RESULT_STATUS_EXCEPTION = "SYSTEM_EXCEPTION";
 	public static final String RESULT_RESULT_MESSAGE = "请求异常，请联系开发人员！";
 	
+
+	/**
+	 * 熔断
+	 */
+	public static final String RESULT_CODE_NET_EXCEPTION = "10201";
+	public static final String RESULT_STATUS_NET_EXCEPTION = "NET_EXCEPTION";
+	public static final String RESULT_RESULT_NET_MESSAGE = "网络异常，服务不可用，请稍后刷新重试！";
+	
 }
