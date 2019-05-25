@@ -1,0 +1,31 @@
+server:
+  port: 5000
+
+spring: 
+  redis: 
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    database: 0
+    timeout: 0
+    
+zuul: 
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+  prefix: /api
+  routes: 
+    qinjee-tsc: 
+      path: /qinjee-tsc/**
+      serviceId: qinjee-tsc
+    qinjee-feign: 
+      path: /qinjee-feign/**
+      serviceId: qinjee-feign
+  
+eureka: 
+  instance:
+    instance-id: qinjee-zuul-${server.port}
+    appname: ${spring.application.name}
+  client:
+    service-url: 
+      defaultZone: http://qinjee:qinjee2019@localhost:8888/eureka/

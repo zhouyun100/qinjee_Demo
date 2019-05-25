@@ -1,0 +1,10 @@
+server:
+  port: 8070
+  
+eureka: 
+  instance:
+    instance-id: qinjee-zuul-${server.port}
+    appname: ${spring.application.name}
+  client:
+    service-url: 
+      defaultZone: http://qinjee:qinjee2019@localhost:8888/eureka/
