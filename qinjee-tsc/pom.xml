@@ -9,7 +9,7 @@
 	</parent>
 	<artifactId>qinjee-tsc</artifactId>
 	<packaging>jar</packaging>
-	<name>TSC</name>
+	<name>qinjee-tsc</name>
 	<description>Qinjee management system of talent supply chain</description>
 
 	<properties>
