@@ -1,10 +1,10 @@
-package com.qinjee.tsc.redis;
+package com.qinjee.feign.redis;
 
 import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -19,7 +19,7 @@ import redis.clients.jedis.JedisPool;
  *
  * @since 2019年5月15日
  */
-@Service("redisService")
+@Component
 public class RedisService{
 
 	@Autowired

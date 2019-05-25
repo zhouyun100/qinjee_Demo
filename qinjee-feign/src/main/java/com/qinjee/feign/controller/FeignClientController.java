@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.qinejee.consts.ResponseConsts;
 import com.qinjee.feign.model.ResultJsonModel;
+import com.qinjee.feign.redis.RedisService;
 import com.qinjee.feign.service.FeignClientService;
-import com.qinjee.tsc.redis.RedisService;
 
 /**
  * 
@@ -38,10 +38,11 @@ import com.qinjee.tsc.redis.RedisService;
  * @since 2019年5月16日
  */
 @RestController
+@RequestMapping("/user")
 public class FeignClientController {
 
 	@Autowired
-	FeignClientService feignService;
+	private FeignClientService feignService;
 
 	@Autowired
 	private RedisService redisService;

@@ -1,9 +1,10 @@
-package com.qinjee.tsc.redis;
+package com.qinjee.feign.redis;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CachingConfigurerSupport;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -17,19 +18,23 @@ import redis.clients.jedis.JedisPoolConfig;
  *
  * @since 2019年5月15日
  */
-@Component
-@PropertySource("classpath:application.yml")
-@ConfigurationProperties(prefix = "redis")
-public class RedisConfig {
+@Configuration
+@EnableCaching
+public class RedisConfig extends CachingConfigurerSupport{
 
+	@Value("${spring.redis.host}")
 	private String host;
 	
+	@Value("${spring.redis.port}")
     private int port;
     
+	@Value("${spring.redis.timeout}")
     private int timeout;
     
+	@Value("${spring.redis.password}")
     private String password;
     
+	@Value("${spring.redis.database}")
     private int database;
     
     public JedisPoolConfig getRedisConfig(){
