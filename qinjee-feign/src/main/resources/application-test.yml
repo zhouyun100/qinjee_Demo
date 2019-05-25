@@ -1,0 +1,17 @@
+server:
+  port: 8088
+  
+eureka: 
+  instance:
+    instance-id: qinjee-feign-${server.port}
+    appname: ${spring.application.name}
+  client:
+    service-url:
+      defaultZone: http://qinjee:qinjee2019@localhost:8888/eureka/
+
+redis: 
+  host: 127.0.0.1
+  port: 6379
+  password: 123456
+  database: 0
+  timeout: 0

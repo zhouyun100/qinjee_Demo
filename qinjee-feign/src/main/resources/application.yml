@@ -1,15 +1,6 @@
-server:
-  port: 8088
-
 spring: 
   application:
     name: qinjee-feign
-    
-eureka: 
-  instance:
-    instance-id: qinjee-feign-${server.port}
-    appname: ${spring.application.name}
-  client:
-    service-url:
-      defaultZone: http://qinjee:qinjee2019@localhost:8888/eureka/
-#      defaultZone: http://${security.user.name}:${security.user.password}@localhost:8888/eureka/,http://${security.user.name}:${security.user.password}@localhost:8889/eureka/
+  #资源文件
+  profiles:
+    active: dev
