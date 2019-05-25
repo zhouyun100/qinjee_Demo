@@ -15,7 +15,7 @@ public class ResponseConsts {
 	/**
 	 * SESSION
 	 */
-	public static final String SESSION_LOGIN_KEY = "LOGIN_KEY";
+	public static final String SESSION_KEY = "SESSION_KEY";
 	public static final String SESSION_INVALID_CODE = "10101";
 	public static final String SESSION_INVALID_STATUS = "FAILD";
 	public static final Integer SESSION_INVALID_SECCOND = 1800;
