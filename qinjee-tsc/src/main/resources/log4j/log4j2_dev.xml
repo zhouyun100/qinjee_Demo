@@ -22,10 +22,10 @@
             <DefaultRolloverStrategy max="20"/>
         </RollingRandomAccessFile>
         
-        <Socket name="socket" host="localhost" port="4567">
-            <JsonLayout compact="true" eventEol="true" />
-            <PatternLayout pattern="${pattern_layout}"/>
-        </Socket>
+<!--         <Socket name="socket" host="localhost" port="4567"> -->
+<!--             <JsonLayout compact="true" eventEol="true" /> -->
+<!--             <PatternLayout pattern="${pattern_layout}"/> -->
+<!--         </Socket> -->
     </Appenders>
 
     <Loggers>
