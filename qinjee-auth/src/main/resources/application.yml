@@ -1,0 +1,16 @@
+spring: 
+  application:
+    name: qinjee-auth
+
+
+server:
+  port: 7777
+#  servlet-path: /uaa
+
+eureka: 
+  instance:
+    instance-id: qinjee-auth-${server.port}
+    appname: ${spring.application.name}
+  client:
+    service-url: 
+      defaultZone: http://qinjee:qinjee2019@localhost:8888/eureka/
