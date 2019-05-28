@@ -24,7 +24,6 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka-server</artifactId>
 		</dependency>
-	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -98,6 +97,11 @@
 			<artifactId>qinjee-entitys</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.qinjee.parent</groupId> -->
+<!-- 			<artifactId>qinjee-utils</artifactId> -->
+<!-- 			<version>0.0.1-SNAPSHOT</version> -->
+<!-- 		</dependency> -->
 	</dependencies>
 	
 	<build>

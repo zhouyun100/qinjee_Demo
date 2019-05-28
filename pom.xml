@@ -24,6 +24,7 @@
 		<module>qinjee-zuul</module>
 		<module>qinjee-utils</module>
 		<module>qinjee-entitys</module>
+		<module>qinjee-auth</module>
 	</modules>
 	
 	<!-- spring-cloud所有项目依赖包 -->
@@ -45,6 +46,28 @@
 	</dependencyManagement>
 	
 	<dependencies>
+<!-- 		<dependency> -->
+<!--             <groupId>org.springframework.cloud</groupId> -->
+<!--             <artifactId>spring-cloud-starter-security</artifactId> -->
+<!--         </dependency> -->
+<!--    		<dependency> -->
+<!-- 			<groupId>org.springframework.cloud</groupId> -->
+<!-- 			<artifactId>spring-cloud-starter-oauth2</artifactId> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 		  <groupId>io.jsonwebtoken</groupId> -->
+<!-- 		  <artifactId>jjwt</artifactId> -->
+<!-- 		  <version>0.9.1</version> -->
+<!-- 		</dependency> -->
+
+		<!-- 热部署 -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-devtools</artifactId>
+		    <optional>true</optional>
+		    <scope>true</scope>
+		</dependency>
+		
 		<!-- json 相关依赖 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>

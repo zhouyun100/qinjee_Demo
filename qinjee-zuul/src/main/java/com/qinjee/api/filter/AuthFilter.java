@@ -50,8 +50,8 @@ public class AuthFilter extends ZuulFilter{
 	private RedisService redisService;
 	
 	//排除过滤的 uri 地址
-    private static final String LOGIN_URI = "/api/qinjee-tsc/user/login";
-    private static final String REGISTER_URI = "/api/qinjee-tsc/user/register";
+    private static final String LOGIN_URI = "/api/tsc/user/login";
+    private static final String REGISTER_URI = "/api/tsc/user/register";
     
 	// 每秒产生1000个令牌
 	private static final RateLimiter RATE_LIMITER = RateLimiter.create(1000);

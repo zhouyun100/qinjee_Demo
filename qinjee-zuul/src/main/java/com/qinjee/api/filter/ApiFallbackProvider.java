@@ -30,11 +30,11 @@ import com.qinejee.consts.ResponseConsts;
 import com.qinjee.entity.ResultJsonEntity;
 
 /**
- * 
+ * 熔断，当服务down掉后，会默认返回getStatusText（）中的提示信息
  *
  * @author 周赟
  *
- * @version 
+ * @version
  *
  * @since 2019年5月25日
  */
@@ -58,8 +58,8 @@ public class ApiFallbackProvider implements ZuulFallbackProvider {
 			@Override
 			public HttpHeaders getHeaders() {
 				HttpHeaders headers = new HttpHeaders();
-                headers.setContentType(MediaType.APPLICATION_JSON);
-                return headers;
+				headers.setContentType(MediaType.APPLICATION_JSON);
+				return headers;
 			}
 
 			@Override
@@ -74,7 +74,7 @@ public class ApiFallbackProvider implements ZuulFallbackProvider {
 
 			@Override
 			public String getStatusText() throws IOException {
-			 ResultJsonEntity resultJson = new ResultJsonEntity();
+				ResultJsonEntity resultJson = new ResultJsonEntity();
 				resultJson.setResultCode(ResponseConsts.RESULT_CODE_NET_EXCEPTION);
 				resultJson.setResultStatus(ResponseConsts.RESULT_STATUS_NET_EXCEPTION);
 				resultJson.setResult(ResponseConsts.RESULT_RESULT_NET_MESSAGE);
@@ -84,9 +84,9 @@ public class ApiFallbackProvider implements ZuulFallbackProvider {
 
 			@Override
 			public void close() {
-				
+
 			}
-			
+
 		};
 	}
 

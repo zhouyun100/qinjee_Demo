@@ -49,4 +49,20 @@ public class UserInfoModel implements Serializable{
 		this.nickname = nickname;
 	}
 	
+	public UserInfoModel(String username,String password) {
+		this.username = username;
+		this.password = password;
+	}
+	
+	public UserInfoModel(Integer id,String username) {
+		this.id = id;
+		this.username = username;
+	}
+	
+	public UserInfoModel(Integer id,String username,String password,String nickname) {
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.nickname = nickname;
+	}
 }

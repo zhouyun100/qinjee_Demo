@@ -1,5 +1,5 @@
 server:
-  port: 5000
+  port: 5555
 
 spring: 
   redis: 
@@ -18,11 +18,21 @@ zuul:
   prefix: /api
   routes: 
     qinjee-tsc: 
-      path: /qinjee-tsc/**
+      path: /tsc/**
       serviceId: qinjee-tsc
-    qinjee-feign: 
-      path: /qinjee-feign/**
-      serviceId: qinjee-feign
+
+security:
+  basic:
+    enabled: false
+#  oauth2:
+#    client:
+#      access-token-uri: http://localhost:7777/uaa/oauth/token #令牌端点
+#      user-authorization-uri: http://localhost:7777/uaa/oauth/authorize #授权端点
+#      client-id: qinjee-zuul #OAuth2客户端ID
+#      client-secret: secret #OAuth2客户端密钥
+#    resource:
+#      jwt:
+#        key-value: springcloud123
   
 eureka: 
   instance:

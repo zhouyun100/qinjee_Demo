@@ -64,9 +64,7 @@ public class UserInfoController {
         
         ResultJsonEntity resultJson = new ResultJsonEntity();
 		try {
-			UserInfoModel userInfo = new UserInfoModel();
-			userInfo.setUsername(username);
-			userInfo.setPassword(password);
+			UserInfoModel userInfo = new UserInfoModel(username,password);
 			userInfo = userInfoService.selectByUsernameAndPassword(userInfo);
 			if (userInfo != null) {
 				String loginKey = ResponseConsts.SESSION_KEY + username;
@@ -119,9 +117,7 @@ public class UserInfoController {
 	public ResultJsonEntity register(String username, String password) {
 		ResultJsonEntity resultJson = new ResultJsonEntity();
 		try {
-			UserInfoModel userInfo = new UserInfoModel();
-			userInfo.setUsername(username);
-			userInfo.setPassword(password);
+			UserInfoModel userInfo = new UserInfoModel(username,password);
 			UserInfoModel userInfoModel = userInfoService.selectByUsernameAndPassword(userInfo);
 			if(null == userInfoModel) {
 				userInfoModel = userInfoService.addUserInfo(userInfo);
@@ -200,9 +196,7 @@ public class UserInfoController {
 	@RequestMapping("/sendMsg")
 	public String sendMsg(Integer id,String username) {
 		try {
-			UserInfoModel userInfo = new UserInfoModel();
-			userInfo.setId(id);;
-			userInfo.setUsername(username);
+			UserInfoModel userInfo = new UserInfoModel(id,username);
 			sendMsgService.send(userInfo);
 			return "send success";
 		}catch(Exception e) {
