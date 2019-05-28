@@ -106,7 +106,6 @@
 	
 	<build>
         <defaultGoal>compile</defaultGoal>
-        <sourceDirectory>src</sourceDirectory>
         <finalName>qinjee-tsc</finalName>
         <plugins>
 			<plugin>

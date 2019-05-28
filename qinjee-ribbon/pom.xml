@@ -22,7 +22,6 @@
 	
 	<build>
         <defaultGoal>compile</defaultGoal>
-        <sourceDirectory>src</sourceDirectory>
         <finalName>qinjee-ribbon</finalName>
         <plugins>
 			<plugin>

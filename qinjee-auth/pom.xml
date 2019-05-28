@@ -19,7 +19,6 @@
 	</dependencies>
 	<build>
 		<defaultGoal>compile</defaultGoal>
-		<sourceDirectory>src</sourceDirectory>
 		<finalName>qinjee-auth</finalName>
 		<plugins>
 			<plugin>
