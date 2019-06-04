@@ -1,0 +1,20 @@
+#spring: 
+#  application:
+#    name: tsc
+#  cloud:
+#    config:
+#      name: tsc
+#      profile: prod
+#      label: master
+#      discovery:
+#        enabled: true
+#        service-id: qinjee-config-server
+#
+##注册中心指向start            
+#eureka: 
+#  instance: 
+#    instance-id: qinjee-tsc-${server.port}
+#    appname: ${spring.application.name}
+#  client:
+#    service-url: 
+#      defaultZone: http://qinjee:qinjee2019@192.168.99.100:8888/eureka/
