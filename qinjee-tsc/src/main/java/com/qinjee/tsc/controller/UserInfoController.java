@@ -7,9 +7,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 
 import com.qinjee.tsc.rabbitmq.SendMsgService;
 import com.qinjee.tsc.redis.RedisService;
@@ -28,6 +35,7 @@ import com.qinjee.tsc.service.UserInfoService;
  *
  * @since 2019年5月15日
  */
+@Api(tags = "用户管理API")
 @RestController
 @RequestMapping("/user")
 public class UserInfoController {
@@ -57,8 +65,13 @@ public class UserInfoController {
 	 *
 	 * @update:[变更日期YYYY-MM-DD][更改人姓名][变更描述]
 	 */
-	@RequestMapping("/login")
-	public ResultJsonEntity login(HttpServletRequest request, HttpServletResponse response, String username, String password) {
+	@ApiOperation(value="用户登录", notes="根据用户名、密码来登录")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String"),
+		@ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String")
+	})
+	@RequestMapping(value = "/login",method = RequestMethod.POST)
+	public ResponseEntity<ResultJsonEntity> login(HttpServletRequest request, HttpServletResponse response, String username, String password) {
 		
         logger.info("Login request parameter：username={};password={}", username,password);
         
@@ -95,7 +108,7 @@ public class UserInfoController {
 			resultJson.setResult(ResponseConsts.RESULT_RESULT_MESSAGE);
 		}
 		
-		return resultJson;
+		return ResponseEntity.ok(resultJson);
 	}
 	
 	/**
@@ -113,9 +126,15 @@ public class UserInfoController {
 	 *
 	 * @update:[变更日期YYYY-MM-DD][更改人姓名][变更描述]
 	 */
-	@RequestMapping("/register")
-	public ResultJsonEntity register(String username, String password) {
+	@ApiOperation(value="用户注册", notes="根据用户名、密码注册，返回注册成功后的用户实体信息")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String"),
+		@ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String")
+	})
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ResponseEntity<ResultJsonEntity> register(String username, String password) {
 		ResultJsonEntity resultJson = new ResultJsonEntity();
+		
 		try {
 			UserInfoModel userInfo = new UserInfoModel(username,password);
 			UserInfoModel userInfoModel = userInfoService.selectByUsernameAndPassword(userInfo);
@@ -136,7 +155,7 @@ public class UserInfoController {
 			resultJson.setResult(ResponseConsts.RESULT_RESULT_MESSAGE);
 		}
 		
-		return resultJson;
+		return ResponseEntity.ok(resultJson);
 	}
 	
 
@@ -153,8 +172,12 @@ public class UserInfoController {
 	 *
 	 * @update:[变更日期YYYY-MM-DD][更改人姓名][变更描述]
 	 */
-	@RequestMapping("/logout")
-	public ResultJsonEntity logout(HttpServletRequest request, HttpServletResponse response) {
+	@ApiOperation(value="退出", notes="用户注销")
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public  ResponseEntity<ResultJsonEntity> logout(HttpServletRequest request, HttpServletResponse response) {
+		ResultJsonEntity resultJson = new ResultJsonEntity();
+		resultJson.setResultCode(ResponseConsts.RESULT_CODE_SUCCESS);
+		resultJson.setResultStatus(ResponseConsts.RESULT_STATUS_SUCCESS);
 		
 		Cookie cookies[] = request.getCookies();
 		if (cookies != null) {
@@ -174,12 +197,9 @@ public class UserInfoController {
 			}
 		}
 		
-		ResultJsonEntity resultJson = new ResultJsonEntity();
-		resultJson.setResultCode(ResponseConsts.SESSION_LOGOUT_CODE);
-		resultJson.setResultStatus(ResponseConsts.SESSION_LOGOUT_STATUS);
 		resultJson.setResult("退出成功");
 		
-		return resultJson;
+		return ResponseEntity.ok(resultJson);
 	}
 	
 	/**
@@ -193,7 +213,7 @@ public class UserInfoController {
 	 *
 	 * @update:[变更日期YYYY-MM-DD][更改人姓名][变更描述]
 	 */
-	@RequestMapping("/sendMsg")
+	@RequestMapping(value = "/sendMsg", method = RequestMethod.POST)
 	public String sendMsg(Integer id,String username) {
 		try {
 			UserInfoModel userInfo = new UserInfoModel(id,username);
@@ -220,8 +240,10 @@ public class UserInfoController {
 	 *
 	 * @update:[变更日期YYYY-MM-DD][更改人姓名][变更描述]
 	 */
-	@RequestMapping("/get")
-	public ResultJsonEntity get(Integer id) {
+	@ApiOperation(value="获取用户详细信息", notes="根据url的id来获取用户详细信息")
+	@ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "int")
+	@RequestMapping(value = "/get", method = RequestMethod.GET)
+	public ResponseEntity<ResultJsonEntity> get(Integer id) {
 		ResultJsonEntity resultJson = new ResultJsonEntity();
 		try {
 			UserInfoModel userInfo = userInfoService.selectByPrimaryKey(id);
@@ -236,12 +258,11 @@ public class UserInfoController {
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			e.printStackTrace();
 			resultJson.setResultCode(ResponseConsts.RESULT_CODE_EXCEPTION);
 			resultJson.setResultStatus(ResponseConsts.RESULT_STATUS_EXCEPTION);
 			resultJson.setResult(ResponseConsts.RESULT_RESULT_MESSAGE);
 		}
-		return resultJson;
+		return ResponseEntity.ok(resultJson);
 	}
 	
 }

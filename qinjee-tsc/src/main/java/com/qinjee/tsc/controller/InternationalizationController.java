@@ -16,11 +16,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.qinjee.tsc.i18n.LocaleConfig;
 
+import io.swagger.annotations.Api;
+
 /**
  * @author Administrator
  *
  */
 
+@Api(tags = "消息接口-Demo")
 @Controller
 public class InternationalizationController {
 

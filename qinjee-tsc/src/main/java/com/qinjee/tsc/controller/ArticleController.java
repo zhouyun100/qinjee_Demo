@@ -35,6 +35,8 @@ import com.alibaba.fastjson.JSON;
 import com.qinjee.tsc.model.ArticleModel;
 import com.qinjee.tsc.service.ArticleRepository;
 
+import io.swagger.annotations.Api;
+
 /**
  * 
  *
@@ -44,6 +46,7 @@ import com.qinjee.tsc.service.ArticleRepository;
  *
  * @since 2019年5月22日
  */
+@Api(tags = "帖子接口-Demo")
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
