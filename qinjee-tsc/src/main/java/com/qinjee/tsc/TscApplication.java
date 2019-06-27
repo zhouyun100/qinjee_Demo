@@ -15,10 +15,14 @@
 package com.qinjee.tsc;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+import com.qinjee.tsc.netty.NettyServer;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -36,10 +40,18 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableEurekaClient
 @EnableAutoConfiguration
 @MapperScan("com.qinjee.tsc.dao")
-public class TscApplication{
+public class TscApplication implements CommandLineRunner{
+	
+	@Autowired
+    private NettyServer nettyServer;
 	
 	public static void main(String [] args) {
 		SpringApplication.run(TscApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		nettyServer.start();
 	}
 	
 }

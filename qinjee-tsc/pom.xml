@@ -93,6 +93,14 @@
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
 		
+        <!-- netty 依赖包  version: 4.1.36.Final -->
+		<dependency>
+		  <groupId>io.netty</groupId>
+		  <artifactId>netty-all</artifactId>
+		  <version>4.1.36.Final</version>
+<!-- 		  <version>5.0.0.Alpha1</version> -->
+		</dependency>
+		
 		<!-- swagger2 相关依赖 -->
 		<dependency>
 			<groupId>io.springfox</groupId>
